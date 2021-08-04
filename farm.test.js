@@ -1,4 +1,12 @@
-const {getCostsForCrop, getRevenueForCrop, getProfitForCrop,  getTotalProfit, getYieldForPlant, getYieldForCrop, getTotalYield } = require("./farm");
+const {
+    getCostsForCrop,
+    getRevenueForCrop,
+    getProfitForCrop,
+    getTotalProfit,
+    getYieldForPlant,
+    getYieldForCrop,
+    getTotalYield,} = require("./farm.js");
+
 
 // We gonna test de cost for crop
 describe ("getCostsForCrop", () => {
@@ -13,6 +21,7 @@ describe("getRevenueForCrop", () => {
     const crops = {
         name: "corn",
         numCrops: 30,
+        salePrice: 2,
     }
 
     test("Get revenue for crop", () => {
@@ -22,7 +31,7 @@ describe("getRevenueForCrop", () => {
 
 describe("getProfitForCrop", () => {
     const crops = {
-        name: "pumpkin",
+         name: "pumpkin",
          numCrops: 30,
          salePrice: 2,
     }
@@ -32,58 +41,67 @@ describe("getProfitForCrop", () => {
     });
 });
 
+describe("Get total profit", () => {
+    const crops = 
+            {crop: "corn", 
+            numCrops: 15,
+            salePrice: 3,
+        }
+    test("get total profit ", () => {
+        expect(getTotalProfit(crops)).toBe(45);
+    });});
 
-// describe("getYieldForPlant", () => {
-//     const corn = {
-//         name: "corn",
-//         yield: 30,
-//     };
+describe("getYieldForPlant", () => {
+    const corn = {
+        name: "corn",
+        yield: 30,
+    };
 
-//     test("Get yield for plant with no environment factors", () => {
-//         expect(getYieldForPlant(corn)).toBe(30);
-//     });
-// });
+    test("Get yield for plant with no environment factors", () => {
+        expect(getYieldForPlant(corn)).toBe(30);
+    });
+});
 
-// describe("getYieldForCrop", () => {
-//     test("Get yield for crop, simple", () => {
-//         const corn = {
-//             name: "corn",
-//             yield: 3,
-//         };
-//         const input = {
-//             crop: corn,
-//             numCrops: 10,
-//         };
-//         expect(getYieldForCrop(input)).toBe(30);
-//     });
-// });
+describe("getYieldForCrop", () => {
+    test("Get yield for crop, simple", () => {
+        const corn = {
+            name: "corn",
+            yield: 3,
+        };
+        const input = {
+            crop: corn,
+            numCrops: 10,
+        };
+        expect(getYieldForCrop(input)).toBe(30);
+    });
+});
 
-// describe("getTotalYield", () => {
-//     test("Calculate total yield with multiple crops", () => {
-//         const corn = {
-//             name: "corn",
-//             yield: 3,
-//         };
-//         const pumpkin = {
-//             name: "pumpkin",
-//             yield: 4,
-//         };
-//         const crops = [
-//             { crop: corn, numCrops: 5 },
-//             { crop: pumpkin, numCrops: 2 },
-//         ];
-//         expect(getTotalYield({ crops })).toBe(23);
-//     });
+describe("getTotalYield", () => {
+    test("Calculate total yield with multiple crops", () => {
+        const corn = {
+            name: "corn",
+            yield: 3,
+        };
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 4,
+        };
+        const crops = [
+            { crop: corn, numCrops: 5 },
+            { crop: pumpkin, numCrops: 2 },
+        ];
+        expect(getTotalYield({ crops })).toBe(23);
+    });
 
-//     test("Calculate total yield with 0 amount", () => {
-//         const corn = {
-//             name: "corn",
-//             yield: 3,
-//         };
-//         const crops = [{ crop: corn, numCrops: 0 }];
-//         expect(getTotalYield({ crops })).toBe(0);
-//     });
-// });
+    test("Calculate total yield with 0 amount", () => {
+        const corn = {
+            name: "corn",
+            yield: 3,
+        };
+        const crops = [{ crop: corn, numCrops: 0 }];
+        expect(getTotalYield({ crops })).toBe(0);
+    });
+});
 
 
 
@@ -117,14 +135,7 @@ const pumpkin = {
             high: 50,
         },
     },};
-
-
-
-    const crops =[
-    { crop: pumpkin, numCrops: 20,},
-    { crop: corn, numCrops:30}]
-
   
   const environmentFactors = {
     sun: "low",
-  };
+    }
